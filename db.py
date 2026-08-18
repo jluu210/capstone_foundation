@@ -162,7 +162,6 @@ class Database:
         cur = self.conn.cursor()
         cur.execute('''
         SELECT
-            
             c.competency_id,
             a.assessment_id,
             c.name AS competency_name,

@@ -1,4 +1,9 @@
 from user import *
+def print_hello_screen(user:User):
+    print(f'''
+    Hi {user.f_name}!
+    ====================================
+        What would you like to do today?''')
 def print_all_users_table(db):
     print_table(db.get_all_users(), ['ID','First Name','Last Name','Phone','Email','Hire Date', "Type", "Active"])
 def print_assessment(result:list):

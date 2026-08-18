@@ -51,7 +51,7 @@ def create_assessment_result(u_id,a_id,db:Database):
 def assessment_results_for_a_user(u_id,db:Database):
     rws = db.get_all_assessment_results_for_user(u_id)
     if rws:
-        print_table(rws,['AR ID','Assessment Name','Score','Date Taken','Assigned By'])
+        print_table(rws,['Assessment ID','Assessment Name','Score','Date Taken','Assigned By'])
     else:
         print('You have not taken an Assessment')
             

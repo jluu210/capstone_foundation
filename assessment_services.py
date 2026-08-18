@@ -8,6 +8,10 @@ def view_assessment_by_id(a_id,db:Database):
         work_on_assessment_managment(rs,db)
         return True
     return False
+def question_work_on_assessment(user:User,db):
+    sel = input('Would you like to work on an Assessment? [Y] to continue: ').strip().lower()
+    if sel in ['y','yes']:
+        take_assessment_wf(user,db)
 def work_on_assessment_managment(rs:list,db:Database):
     # 1. View all Assessment Results for {nm} .
     # 2. Rename {nm}
@@ -93,7 +97,7 @@ def take_assessment_wf(user:User, db:Database):
     while True:
         print('Assessments taken')
         assessment_results_for_a_user(u_id,db)
-        op = input('Would you like to take an Assessment? [Y/Yes] to continue').strip().lower()
+        op = input('Would you like to take an Assessment? [Y] to continue').strip().lower()
         if op in ['yes','y']:
             print_table(db.get_all_assessments(),['ID','Assessment Name','Compentency'])
             sel = input("Enter Assessment ID: ")

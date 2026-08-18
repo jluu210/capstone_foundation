@@ -4,6 +4,7 @@ from print_services import *
 from user_service import *
 from competency_service import *
 from assessment_services import *
+from user_flow import *
 def determine_alpha(val:str):
     return val.isalpha()
 def user_id_wf_manager(logged_in_user:User,db:Database):
@@ -52,7 +53,6 @@ def management_user_selection_flow(user:User,db:Database):
             case '5':
                 view_all_assessment_results_for_user(user.user_id,db)
             case '6':
-                #view_all_assessment_results_for_user(user.user_id,db)
                 delete_assessment_result_wf(user.user_id,db)
             case _:
                 return
@@ -72,6 +72,7 @@ def user_selection_flow(user:User,db:Database):
             edit_user(user, db)
         case '2':
             view_assessments_a_user_still_needs(user.user_id,db)
+            question_work_on_assessment(user,db)
         case '3':
             take_assessment_wf(user,db)
         case '4':
@@ -134,23 +135,11 @@ def manager_flow(user:Manager, db:Database):
                 reports_wf(logged_in_user,db)
             case _:
                 print('invalid selection')
-                continue
-def user_flow(user:User):
-    print_selection_screen_user()
-    # 1. View your information.
-    # 2. Take an Assessment.
-    # 3. View your previous Assessments.
-    selection = input('Make a selection: ').strip().lower()
-    if selection in ['q','quit']:
-        return
-    print(f'USER FLOW: {user.f_name}')
+
 def selection_flow(db:Database, user:User):
     while True:
             user_r = db.load_user_by_id(user.user_id)
-            print(f'''
-Hi {user_r.f_name}!
-====================================
-    What would you like to do today?''')
+            print_hello_screen(user_r)
             if(user_r.user_type == 'manager'):
                 manager_flow(user_r,db)
             else:
