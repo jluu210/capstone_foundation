@@ -121,6 +121,7 @@ def manager_flow(user:Manager, db:Database):
                 print_table(db.get_all_users(), ['ID','First Name','Last Name','Phone','Email','Hire Date', "Type", "Active"])
                 user_id_wf_manager(logged_in_user,db)       
             case '3':
+                #change
                 compentency_work_flow(user,db)
             case '4':
                 as_screen_assessment_wf_manager(db)
