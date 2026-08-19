@@ -77,7 +77,7 @@ def user_selection_flow(user:User,db:Database):
         case '3':
             take_assessment_wf(user,db)
         case '4':
-            #TODO
+            user.change_password()
             input('Press ENTER to go back.')
             pass
         case _:

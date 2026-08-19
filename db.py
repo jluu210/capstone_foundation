@@ -3,16 +3,19 @@ from datetime import datetime
 from user import *
 class Database:
     def __init__(self, conn):
-        self.conn = conn
+        self.conn = conn 
     def login_user(self, email, password):
         user = self.load_user_by_email(email)
         if user is None:
             return None
         if user.active != 1:
             return None
-        if user.password_hash == password:
+
+        hashed = user.password_hash.encode('utf-8')
+
+        if bcrypt.checkpw(password.encode('utf-8'), hashed):
             return user
-        return None   
+        return None
     def load_user_by_email(self, email):
         cur = self.conn.cursor()
         cur.execute(
@@ -261,8 +264,6 @@ class Database:
             return None
         else:
             return rows
-    def change_user_password(self, user:User):
-        pass
 
     def add_new_assessment(self, competency_id, assessment_name):
         cur = self.conn.cursor()
@@ -351,6 +352,18 @@ class Database:
             WHERE user_id = ?
             """,
             (f_name, l_name, phone, email, u_id)
+        )
+        self.conn.commit()
+        return cur.rowcount
+    def update_user_password(self, u_id, p_data):
+        cur = self.conn.cursor()
+        cur.execute(
+            """
+            UPDATE Users
+            SET password_hash = ?
+            WHERE user_id = ?
+            """,
+            (p_data, u_id)
         )
         self.conn.commit()
         return cur.rowcount
@@ -621,8 +634,8 @@ class Database:
         cur = self.conn.cursor()
         f_name = new_fields[0]
         l_name = new_fields[1]
-        phone = new_fields[2]
-        email = new_fields[3]
+        email = new_fields[2]
+        phone = new_fields[3]
         u_id = user.user_id
         cur.execute(
             """

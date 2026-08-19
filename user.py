@@ -1,4 +1,5 @@
-from db import *
+import bcrypt
+import sqlite3
 class User:
     def __init__(self, user_id, f_name, l_name, phone, email,
                  password_hash, creation_date, hire_date, user_type, active):
@@ -25,10 +26,44 @@ class User:
             self.hire_date = refreshed_user.hire_date
             self.user_type = refreshed_user.user_type
             self.active = refreshed_user.active
-    def change_password():
-        pass
-    def take_assessment(self, competency_id):
-        pass
+    def change_password(self):
+        stored_hash = (self.password_hash or "").encode('utf-8')
+        while True:
+            old_plain = input('Enter old password (blank to cancel): ')
+            if old_plain == '':
+                print("Password change cancelled.")
+                return
+
+            if bcrypt.checkpw(old_plain.encode('utf-8'), stored_hash):
+                new_plain = input('Enter new password: ')
+                re_plain = input('Re-enter new password: ')
+
+                if new_plain != re_plain:
+                    print("Passwords do not match!")
+                    continue
+
+                self.password_hash = bcrypt.hashpw(
+                    new_plain.encode('utf-8'),
+                    bcrypt.gensalt()
+                ).decode('utf-8')
+                self.save_user()
+                print('Password Changed!')
+                return
+            else:
+                print("Old password incorrect!")
+    def save_user(self):
+        connection = sqlite3.connect('capstone.db')
+        cursor = connection.cursor()
+        cursor.execute(
+                    """
+                    UPDATE Users
+                    SET password_hash = ?
+                    WHERE user_id = ?
+                    """,
+                    (self.password_hash, self.user_id)
+                )
+        connection.commit()
+        return cursor.rowcount
 class Manager(User):
     def print_reports():
         pass

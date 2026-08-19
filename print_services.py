@@ -100,8 +100,9 @@ def print_selection_screen_user():
     print('''
 Selection:
     1. View your information.
-    2. Take an Assessment.
-    3. View your previous Assessments.
+    2. View your previous assessments and take an Assessment.
+    3. View Assessments you still need to do.
+    4. Change your password.
     [Q]uit
 ''')
     

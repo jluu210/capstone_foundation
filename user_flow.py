@@ -1,13 +1,15 @@
 from print_services import *
 from user import User
 from db import *
+from assessment_services import *
 def user_flow(user:User, db:Database):
     while True:
         print_selection_screen_user()
         user = db.load_user_by_id(user.user_id)
         # 1. View your information.
-        # 2. Take an Assessment.
-        # 3. View your previous Assessments.
+        # 2. View your previous assessments and take an Assessment.
+        # 3. View Assessments you still need to do.
+        # 4. Changer your password
         selection = input('Make a selection: ').strip().lower()
         if selection in ['q','quit']:
             return
@@ -16,15 +18,18 @@ def user_flow(user:User, db:Database):
                 print_a_user(user)
                 user_update_wf(user,db)
             case '2':
-                pass
+                take_assessment_wf(user,db)
             case '3':
-                pass
+                view_assessments_a_user_still_needs(user.user_id,db)
+            case '4':
+                user.change_password()
             case _:
                 print('Invalid selection.')
 def user_update_wf(user: User, db: Database):
-    yes = input('''Would you like to keep update your info? [Y/N]
+    yes = input('''
+Would you like to update your info? [Y/N]
 
-Press ENTER to return.''').strip().lower()
+Press ENTER to return: ''').strip().lower()
 
     if yes in ['y', 'yes']:
         fields = {
@@ -55,6 +60,8 @@ Press ENTER to return.''').strip().lower()
                 print('Your data has been updated.')
         else:
             print('Cancelled.')
+
+
 
     
 
