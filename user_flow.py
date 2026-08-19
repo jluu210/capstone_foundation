@@ -48,7 +48,7 @@ Press ENTER to return: ''').strip().lower()
             else:
                 updated_fields[label] = new_value
 
-        yes = input('Would you like to keep these changes? [Y] to continue. ').strip().lower()
+        yes = input('Would you like to keep these changes? [Y] to accept.\nEnter to Cancel: ').strip().lower()
         if yes in ['y', 'yes']:
             new_fields = [
                 updated_fields["First Name"],

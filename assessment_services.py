@@ -109,7 +109,7 @@ def take_assessment_wf(user:User, db:Database):
     while True:
         print('Assessments taken')
         assessment_results_for_a_user(u_id,db)
-        op = input('Would you like to take an Assessment? [Y] to continue').strip().lower()
+        op = input('Would you like to take an Assessment? [Y] to continue: ').strip().lower()
         if op in ['yes','y']:
             print_table(db.get_all_assessments(),['ID','Assessment Name','Compentency'])
             sel = input("Enter Assessment ID: ")
@@ -122,7 +122,3 @@ def take_assessment_wf(user:User, db:Database):
                 continue
         return
 
-# def delete_assessment_result(ar_id, db:Database):
-#     rws = db.get_all_assessment_results_for_an_id(ar_id)
-#     if rws:
-#         sel = input('Are you sure you want to DELETE')
