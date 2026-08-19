@@ -1,6 +1,21 @@
 from db import *
 from print_services import *
 from assessment_result_service import *
+def rename_assessment(rs, db:Database):
+    while True:
+        currnt_name = rs[1]
+        new_name = input(f'''Current Name: {currnt_name}
+Press Enter to CANCEL 
+Enter New Assessment Name: ''')
+        if new_name == '':
+            return
+        else:
+            conf = input(f'''Are you sure you want to change:
+{currnt_name} to {new_name} ? [Y] to continue ''').strip().lower()
+            if conf in ['y','yes']:
+                db.update_assessment_name(rs[0],new_name)
+            else:
+                continue
 def view_assessment_by_id(a_id,db:Database):
     rs = db.get_assessment_by_id(a_id)
     if rs is not None:
@@ -15,7 +30,6 @@ def question_work_on_assessment(user:User,db):
 def work_on_assessment_managment(rs:list,db:Database):
     # 1. View all Assessment Results for {nm} .
     # 2. Rename {nm}
-    # 3. Take {nm}
     while True:
         print_assessment_screen_manager(rs)
         sel = input('''
@@ -26,15 +40,13 @@ Selection: ''')
             case '1':
                 review_assessment_results_for_id(rs,db)
             case '2':
-                pass
-            case '3':
-                pass
+                rename_assessment(rs,db)
             case _:
                 print('Invalid Selection.')
                 continue
 def view_assessments_a_user_still_needs(u_id,db:Database):
     rs = db.get_all_assessments_a_user_needs_to_take(u_id)
-    print_table(rs,['C_ID','A_ID','Competency','Assessment','Percentage'])
+    print_table(rs,['Competency ID','Assessment ID','Competency','Assessment','Percentage'])
 def assessment_wf_manager(c_id,db:Database):
     rs = db.get_assessment_by_compentency_id(c_id)
     print_table(rs,['Assessment ID','Name','Compentency'])

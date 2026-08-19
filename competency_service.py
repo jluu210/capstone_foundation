@@ -61,37 +61,16 @@ ID: ''').strip()
             competency_detail_wf(val,db)
         else:
             print(f'ID {val} not found or invalid')
-    
-
 def mg_create_competency(db:Database):
     name = input('Competency name or ENTER to return: ').strip()
     if name == '':
         return
     else:
         db.create_new_competency(name.title())
-
-def user_compentency_wf():
-    sel = input(f'''
-1. View Competency Detail by ID'
-
-Press ENTER to return
-
-Selection: ''')
-    match sel:
-        case '1':
-            print('pressed 1') 
-        case '2':
-            print('pressed 2')
-        case _:
-            return
-
 def manager_compentency_wf(db:Database):
     view_competency_by_id(db)
 def compentency_work_flow(user:User,db:Database):
     
     if user.user_type == 'manager':
         manager_compentency_wf(db)
-    else:
-        user_compentency_wf()
-
         

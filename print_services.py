@@ -117,8 +117,7 @@ def print_assessment_screen_manager(assessment:list):
     nm = assessment[1]
     print(
 f'''1. View all Assessment Results for: {nm} 
-2. Rename: {nm}
-3. Take: {nm}''')
+2. Rename: {nm}''')
 
 def print_report_screen():
     print('''

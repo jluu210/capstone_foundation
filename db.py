@@ -143,6 +143,7 @@ class Database:
         cur.execute('''
             SELECT
                 ar.result_id,
+                a.assessment_id,
                 a.name AS assessment_name,
                 ar.score,
                 ar.date_taken,
@@ -606,6 +607,17 @@ class Database:
             return None
 
         return row
+
+    def update_assessment_name(self,a_id, nm):
+        cur = self.conn.cursor()
+        cur.execute('''
+        UPDATE Assessments        
+        SET name = ?
+        WHERE user_id = ?''',(nm,a_id))
+        self.conn.commit()
+        return cur.lastrowid
+
+
     
 
 

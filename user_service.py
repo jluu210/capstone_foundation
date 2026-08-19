@@ -8,7 +8,7 @@ from user_flow import *
 def determine_alpha(val:str):
     return val.isalpha()
 def user_id_wf_manager(logged_in_user:User,db:Database):
-    u_id = input('Enter ID: ')
+    u_id = input('\nEnter a User ID to work on: ')
     work_on_user_obj(logged_in_user,db.load_user_by_id(u_id),db)
 def edit_user(user:User, db:Database):
     f_name = input(f'Current Name {user.f_name} or ENTER to continue: ')
@@ -28,16 +28,16 @@ def edit_user(user:User, db:Database):
 def management_user_selection_flow(user:User,db:Database):
     # 1. Edit
     # 2. View Assesments
-    # 3. Assign an Assesment to user
-    # 4. Deactivate user
+    # 3. Deactivate user
+    # 4. View Assessment Results for
     # 5. Delete Assessment Result
     while True:
         sel = input(f'''
     1. Edit {user.f_name}\'s Data
     2. View Assesments {user.f_name} still needs or retake.
-    4. Deactivate {user.f_name}
-    5. View Assessment Results for {user.f_name}
-    6. Delete an Assessment Result for {user.f_name}
+    3. Deactivate {user.f_name}
+    4. View Assessment Results for {user.f_name}
+    5. Delete an Assessment Result for {user.f_name}
 
     Selection or ENTER to go back: ''').strip().lower()
         match sel:
@@ -46,16 +46,17 @@ def management_user_selection_flow(user:User,db:Database):
             case '2':
                 view_assessments_a_user_still_needs(user.user_id,db)
                 input('Press ENTER to go back.')
-            case '4':
+            case '3':
                 db.deactivate_user_by_id(user.user_id)
                 print(f'Deactivated: {user.f_name}')
                 input('Press ENTER to go back.')
-            case '5':
+            case '4':
                 view_all_assessment_results_for_user(user.user_id,db)
-            case '6':
+            case '5':
                 delete_assessment_result_wf(user.user_id,db)
             case _:
                 return
+
 def user_selection_flow(user:User,db:Database):
     #1. Edit your information
     #2. Review your Assessments Still needed or to retake.
@@ -121,7 +122,6 @@ def manager_flow(user:Manager, db:Database):
                 print_table(db.get_all_users(), ['ID','First Name','Last Name','Phone','Email','Hire Date', "Type", "Active"])
                 user_id_wf_manager(logged_in_user,db)       
             case '3':
-                #change
                 compentency_work_flow(user,db)
             case '4':
                 as_screen_assessment_wf_manager(db)
@@ -136,7 +136,6 @@ def manager_flow(user:Manager, db:Database):
                 reports_wf(logged_in_user,db)
             case _:
                 print('invalid selection')
-
 def selection_flow(db:Database, user:User):
     while True:
             user_r = db.load_user_by_id(user.user_id)
