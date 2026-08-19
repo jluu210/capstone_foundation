@@ -4,16 +4,13 @@ from print_services import *
 import random
 def review_assessment_results_for_id(rs:list,db:Database):
     results = db.get_all_assessment_results_for_an_id(rs[0])
-    for result in results:
-        print(result)
+    print_table(results,['Assessment Result ID','User ID','Assigned To','Score','Date Taken'])
 def load_results_into_objects(rows:list): 
     results = [AssessmentResult.from_row(row) for row in rows]
     return results
-    # for assesment in results:
-    #     print(assesment)
 def view_all_assessment_results_for_user(u_id, db:Database):
     print(f'User ID: ', u_id)
-    print_table(db.get_all_assessment_results_for_user(u_id),['AR ID','Assessment Name','Score','Date Taken','Assigned By'])
+    print_table(db.get_all_assessment_results_for_user(u_id),['Assessment Result ID','Assessment ID','Assessment Name','Score','Date Taken','Assigned By'])
 def delete_assessment_result_wf(u_id,db:Database):
     while True:
         view_all_assessment_results_for_user(u_id,db)

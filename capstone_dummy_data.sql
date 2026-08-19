@@ -13,27 +13,27 @@
 -- -------------------------
 INSERT INTO Users (f_name, l_name, phone, email, password_hash, hire_date, user_type, active)
 VALUES
-('Ava','Johnson','555-1001','ava.johnson@example.com','hash_av1','2024-01-10','manager',1),
-('Noah','Williams','555-1002','noah.williams@example.com','hash_no1','2024-02-14','manager',1),
-('Mia','Brown','555-1003','mia.brown@example.com','hash_mi1','2024-03-18','manager',1),
-('Ethan','Jones','555-1004','ethan.jones@example.com','hash_et1','2024-04-22','manager',1),
-('Sophia','Garcia','555-1005','sophia.garcia@example.com','hash_so1','2024-05-26','manager',1),
+('Ava','Johnson','555-1001','ava.johnson@example.com','$2b$12$x9EpWE06Sb1DdJ5Ql1h.F.abuPz6IqNDhsnJq1FChF8zNIhGeILna','2024-01-10','manager',1),
+('Noah','Williams','555-1002','noah.williams@example.com','$2b$12$x9EpWE06Sb1DdJ5Ql1h.F.abuPz6IqNDhsnJq1FChF8zNIhGeILna','2024-02-14','manager',1),
+('Mia','Brown','555-1003','mia.brown@example.com','$2b$12$x9EpWE06Sb1DdJ5Ql1h.F.abuPz6IqNDhsnJq1FChF8zNIhGeILna','2024-03-18','manager',1),
+('Ethan','Jones','555-1004','ethan.jones@example.com','$2b$12$x9EpWE06Sb1DdJ5Ql1h.F.abuPz6IqNDhsnJq1FChF8zNIhGeILna','2024-04-22','manager',1),
+('Sophia','Garcia','555-1005','sophia.garcia@example.com','$2b$12$x9EpWE06Sb1DdJ5Ql1h.F.abuPz6IqNDhsnJq1FChF8zNIhGeILna','2024-05-26','manager',1),
 
-('Liam','Miller','555-2001','liam.miller@example.com','hash_li1','2024-06-03','user',1),
-('Emma','Davis','555-2002','emma.davis@example.com','hash_em1','2024-06-07','user',1),
-('Oliver','Rodriguez','555-2003','oliver.rodriguez@example.com','hash_ol1','2024-06-11','user',1),
-('Charlotte','Martinez','555-2004','charlotte.martinez@example.com','hash_ch1','2024-06-15','user',1),
-('James','Hernandez','555-2005','james.hernandez@example.com','hash_ja1','2024-06-19','user',1),
-('Amelia','Lopez','555-2006','amelia.lopez@example.com','hash_am1','2024-06-23','user',1),
-('Benjamin','Gonzalez','555-2007','benjamin.gonzalez@example.com','hash_be1','2024-06-27','user',1),
-('Harper','Wilson','555-2008','harper.wilson@example.com','hash_ha1','2024-07-01','user',1),
-('Elijah','Anderson','555-2009','elijah.anderson@example.com','hash_el1','2024-07-05','user',1),
-('Emily','Thomas','555-2010','emily.thomas@example.com','hash_em2','2024-07-09','user',1),
-('Lucas','Taylor','555-2011','lucas.taylor@example.com','hash_lu1','2024-07-13','user',1),
-('Avery','Moore','555-2012','avery.moore@example.com','hash_av2','2024-07-17','user',1),
-('Henry','Jackson','555-2013','henry.jackson@example.com','hash_he1','2024-07-21','user',1),
-('Ella','Martin','555-2014','ella.martin@example.com','hash_el2','2024-07-25','user',1),
-('Daniel','Lee','555-2015','daniel.lee@example.com','hash_da1','2024-07-29','user',1);
+('Liam','Miller','555-2001','liam.miller@example.com','$2b$12$x9EpWE06Sb1DdJ5Ql1h.F.abuPz6IqNDhsnJq1FChF8zNIhGeILna','2024-06-03','user',1),
+('Emma','Davis','555-2002','emma.davis@example.com','$2b$12$x9EpWE06Sb1DdJ5Ql1h.F.abuPz6IqNDhsnJq1FChF8zNIhGeILna','2024-06-07','user',1),
+('Oliver','Rodriguez','555-2003','oliver.rodriguez@example.com','$2b$12$x9EpWE06Sb1DdJ5Ql1h.F.abuPz6IqNDhsnJq1FChF8zNIhGeILna','2024-06-11','user',1),
+('Charlotte','Martinez','555-2004','charlotte.martinez@example.com','$2b$12$x9EpWE06Sb1DdJ5Ql1h.F.abuPz6IqNDhsnJq1FChF8zNIhGeILna','2024-06-15','user',1),
+('James','Hernandez','555-2005','james.hernandez@example.com','$2b$12$x9EpWE06Sb1DdJ5Ql1h.F.abuPz6IqNDhsnJq1FChF8zNIhGeILna','2024-06-19','user',1),
+('Amelia','Lopez','555-2006','amelia.lopez@example.com','$2b$12$x9EpWE06Sb1DdJ5Ql1h.F.abuPz6IqNDhsnJq1FChF8zNIhGeILna','2024-06-23','user',1),
+('Benjamin','Gonzalez','555-2007','benjamin.gonzalez@example.com','$2b$12$x9EpWE06Sb1DdJ5Ql1h.F.abuPz6IqNDhsnJq1FChF8zNIhGeILna','2024-06-27','user',1),
+('Harper','Wilson','555-2008','harper.wilson@example.com','$2b$12$x9EpWE06Sb1DdJ5Ql1h.F.abuPz6IqNDhsnJq1FChF8zNIhGeILna','2024-07-01','user',1),
+('Elijah','Anderson','555-2009','elijah.anderson@example.com','$2b$12$x9EpWE06Sb1DdJ5Ql1h.F.abuPz6IqNDhsnJq1FChF8zNIhGeILna','2024-07-05','user',1),
+('Emily','Thomas','555-2010','emily.thomas@example.com','$2b$12$x9EpWE06Sb1DdJ5Ql1h.F.abuPz6IqNDhsnJq1FChF8zNIhGeILna','2024-07-09','user',1),
+('Lucas','Taylor','555-2011','lucas.taylor@example.com','$2b$12$x9EpWE06Sb1DdJ5Ql1h.F.abuPz6IqNDhsnJq1FChF8zNIhGeILna','2024-07-13','user',1),
+('Avery','Moore','555-2012','avery.moore@example.com','$2b$12$x9EpWE06Sb1DdJ5Ql1h.F.abuPz6IqNDhsnJq1FChF8zNIhGeILna','2024-07-17','user',1),
+('Henry','Jackson','555-2013','henry.jackson@example.com','$2b$12$x9EpWE06Sb1DdJ5Ql1h.F.abuPz6IqNDhsnJq1FChF8zNIhGeILna','2024-07-21','user',1),
+('Ella','Martin','555-2014','ella.martin@example.com','$2b$12$x9EpWE06Sb1DdJ5Ql1h.F.abuPz6IqNDhsnJq1FChF8zNIhGeILna','2024-07-25','user',1),
+('Daniel','Lee','555-2015','daniel.lee@example.com','$2b$12$x9EpWE06Sb1DdJ5Ql1h.F.abuPz6IqNDhsnJq1FChF8zNIhGeILna','2024-07-29','user',1);
 
 -- -------------------------
 -- Competencies (25 total

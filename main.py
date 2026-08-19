@@ -16,10 +16,9 @@ def main():
     conn = sqlite3.connect("capstone.db")
     db = Database(conn)
 
-    select_user_competency_print(db)
-    # while True:
-    #     login_flow(db)
-    #     break
+    while True:
+        login_flow(db)
+        break
 
 if __name__ == "__main__":
     main()

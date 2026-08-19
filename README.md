@@ -1,14 +1,13 @@
-# Welcome to Documentation 101
+# Competency Tracking Tool Overview
 
-## We can make really simple formatting to arrange all necessary info!
+## This is Capstone Project - Cohort 15
 
 ### Between headers and lists we can make everything easier to read.
 
-#### I want to show these few things
-- How to add a code block
-- How to add in line code
-- How to make a table
-- Hotkeys to view Markdown files
+#### About me:
+- Jason Luna
+- linkedin.com/in/jason-luna-3a33518b
+
 
 
 ### Here's how you do those few things:

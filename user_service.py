@@ -133,7 +133,7 @@ def manager_flow(user:Manager, db:Database):
             case '6':
                 create_new_user(db)
             case '7':
-                reports_wf(logged_in_user,db)
+                reports_wf(db)
             case _:
                 print('invalid selection')
 def selection_flow(db:Database, user:User):

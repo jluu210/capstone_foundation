@@ -125,6 +125,8 @@ def print_report_screen():
 1. View User Competency Summary
 2. View Competency Results Summary
 3. Print Reports
+
+Press ENTER to return.
 ''')
 
 def display_print_selection_screen():
@@ -136,6 +138,16 @@ Press Enter to go back
 '''
     return s
 
+def display_login_screen():
+    s ='''
+WELCOME
+TO
+Competency Tracking Tool Overview 
+
+To LOGIN
+
+Enter Email: '''
+    return s
 
 
         

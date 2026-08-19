@@ -1,4 +1,4 @@
-#import bcrypt
+import bcrypt
 import sqlite3
 class User:
     def __init__(self, user_id, f_name, l_name, phone, email,

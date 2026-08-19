@@ -47,14 +47,15 @@ def view_competency_by_id(db:Database):
      while True:
         print_table(db.get_all_compentencies(),['ID','Name'])
         val  = input('''
+
 Press ENTER to return
 
 ID: ''').strip()
+        if val == '':
+            break
         if val.isalpha():
             print(f'invalid ID: {val}')
             continue
-        if val == '':
-            break
         data = db.get_compentency_by_id(val)
         if data:
             print_competency_by_id(data)
@@ -70,7 +71,6 @@ def mg_create_competency(db:Database):
 def manager_compentency_wf(db:Database):
     view_competency_by_id(db)
 def compentency_work_flow(user:User,db:Database):
-    
     if user.user_type == 'manager':
         manager_compentency_wf(db)
         
