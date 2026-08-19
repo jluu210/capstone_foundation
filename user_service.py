@@ -143,7 +143,7 @@ def selection_flow(db:Database, user:User):
             if(user_r.user_type == 'manager'):
                 manager_flow(user_r,db)
             else:
-                user_flow(user_r)
+                user_flow(user_r,db)
             break
 def search_for_users(db:Database):
         name = input('Search: ')

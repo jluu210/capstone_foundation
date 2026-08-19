@@ -616,6 +616,25 @@ class Database:
         WHERE user_id = ?''',(nm,a_id))
         self.conn.commit()
         return cur.lastrowid
+    def update_user_with_list(self,new_fields:list,user:User):
+
+        cur = self.conn.cursor()
+        f_name = new_fields[0]
+        l_name = new_fields[1]
+        phone = new_fields[2]
+        email = new_fields[3]
+        u_id = user.user_id
+        cur.execute(
+            """
+            UPDATE Users
+            SET f_name = ?, l_name = ?, phone = ?, email = ?
+            WHERE user_id = ?
+            """,
+            (f_name.title(), l_name.title(), phone, email, u_id)
+        )
+        self.conn.commit()
+        return cur.rowcount
+
 
 
     
