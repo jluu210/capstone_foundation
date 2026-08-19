@@ -2,26 +2,24 @@
 
 ## This is Capstone Project - Cohort 15
 
-### Between headers and lists we can make everything easier to read.
+### Hello and thank you for this course. I've had such fun learning!
 
 #### About me:
 - Jason Luna
 - linkedin.com/in/jason-luna-3a33518b
+- This project is intended for educational purposes only. 
 
-
-
-### Here's how you do those few things:
-
-#### 1. To add a code block use three backticks \`\`\`
-```python
-for x in range(1,11):
-    print(x)
+#### 1. Initialize the database by running the following commands in this order:  \`\`\`
 ```
-#### 2. To add inline code sample use a single backtick \`
-This way you can show your code, like a list comprehension
-`my_list = [x**2 for x in range(1,11)]`, right here in your paragraph.
+python capstone_create_tables.py
+python capstone_create_dummy_data.py
+```
+#### 2. Use this login information \`
+manager: ava.johnson@example.com
+password `password123`
+user: liam.miller@example.com
+password `password123`
 
-#### 3. Here's a table of key symbols to memorize
 
 | Formatting | ---- | Markdown |
 | ------- | ---- | ------- |
