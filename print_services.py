@@ -93,6 +93,7 @@ Selection:
     5. Search for User.
     6. Create a new User.
     7. Reports.
+    8. Import an Assessment Results CSV
     [Q]uit
 ''')
     

@@ -5,6 +5,7 @@ from user_service import *
 from competency_service import *
 from assessment_services import *
 from user_flow import *
+from import_csv import *
 def determine_alpha(val:str):
     return val.isalpha()
 def user_id_wf_manager(logged_in_user:User,db:Database):
@@ -115,6 +116,7 @@ def manager_flow(user:Manager, db:Database):
         #5. Search for User.
         #6. Create a new User
         #7. Reports.
+        #8. Import a Assessment_Results CSV
         match selection:
             case '1':
                 work_on_user_obj(logged_in_user,user,db)
@@ -134,6 +136,8 @@ def manager_flow(user:Manager, db:Database):
                 create_new_user(db)
             case '7':
                 reports_wf(db)
+            case '8':
+                import_csv_wf(logged_in_user,db)
             case _:
                 print('invalid selection')
 def selection_flow(db:Database, user:User):

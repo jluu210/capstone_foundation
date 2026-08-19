@@ -368,6 +368,18 @@ class Database:
         )
         self.conn.commit()
         return cur.rowcount
+    def user_exists(self, user_id):
+        cur = self.conn.cursor()
+        cur.execute('''
+            SELECT EXISTS (
+                SELECT 1
+                FROM Users
+                WHERE user_id = ?
+            ) AS user_exists;
+        ''', (user_id,))
+        result = cur.fetchone()[0]
+        return bool(result)
+
     def load_user_by_id(self, user_id):
         cur = self.conn.cursor()
         cur.execute(
