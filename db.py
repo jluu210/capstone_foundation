@@ -1,6 +1,7 @@
 import sqlite3
 from datetime import datetime
 from user import *
+import csv
 class Database:
     def __init__(self, conn):
         self.conn = conn 
@@ -509,37 +510,39 @@ class Database:
         if rows is None:
             return None
         return rows
-    def get_user_competency_summary_for_user(self,u_id):
+    def get_user_competency_summary_for_user(self, u_id):
         cur = self.conn.cursor()
+
         cur.execute('''
-        SELECT
-           COALESCE(u.f_name || ' ' || u.l_name, '') AS user_name,
-            c.name AS competency_name,
-            a.name AS assessment_name,
-            ar.score,
-            ar.date_taken
-        FROM Competencies c
-        CROSS JOIN Users u
-        LEFT JOIN Assessments a
-            ON a.competency_id = c.competency_id
-        LEFT JOIN Assessment_Results ar
-            ON ar.assessment_id = a.assessment_id
-        AND ar.user_id = u.user_id
-        WHERE u.user_id = ?
-        AND a.name IS NOT NULL
-        AND u.active = 1
-        AND (
+            SELECT
+                COALESCE(u.f_name || ' ' || u.l_name, '') AS user_name,
+                c.name AS competency_name,
+                a.name AS assessment_name,
+                COALESCE(ar.score, 0) AS score,
+                ar.date_taken
+            FROM Competencies c
+            CROSS JOIN Users u
+            LEFT JOIN Assessments a
+                ON a.competency_id = c.competency_id
+            LEFT JOIN Assessment_Results ar
+                ON ar.assessment_id = a.assessment_id
+                AND ar.user_id = u.user_id
+            WHERE u.user_id = ?
+            AND a.name IS NOT NULL
+            AND u.active = 1
+            AND (
                 ar.date_taken IS NULL
                 OR ar.date_taken = (
                     SELECT MAX(ar2.date_taken)
                     FROM Assessment_Results ar2
                     JOIN Assessments a2
-                    ON ar2.assessment_id = a2.assessment_id
+                        ON ar2.assessment_id = a2.assessment_id
                     WHERE ar2.user_id = u.user_id
-                    AND a2.competency_id = c.competency_id
+                        AND a2.competency_id = c.competency_id
                 )
             )
-        ORDER BY c.competency_id;''',(u_id,))
+            ORDER BY c.competency_id;
+        ''', (u_id,))
         rows = cur.fetchall()
         if rows is None:
             return None
@@ -647,6 +650,62 @@ class Database:
         )
         self.conn.commit()
         return cur.rowcount
+
+    def print_csv_competency_result_summary(self, c_id):
+        rows = self.get_competency_result_summary(c_id)
+
+        if not rows:
+            return False
+
+        with open(
+            f"csv_file_{c_id}.csv",
+            "w",
+            newline="",
+            encoding="utf-8"
+        ) as outfile:
+            wrt = csv.writer(outfile)
+
+            wrt.writerow([
+                "Competency Name",
+                "User Name",
+                "Assessment Name",
+                "Score",
+                "Date Taken"
+            ])
+
+            # Write each tuple as a separate CSV row
+            wrt.writerows(rows)
+        return True
+        
+
+    def print_csv_user_competency_summary_for_user(self, u_id):
+        rows = self.get_user_competency_summary_for_user(u_id)
+
+        if not rows:
+            return False
+
+        filename = f"user_competency_summary_{u_id}.csv"
+
+        with open(
+            filename,
+            "w",
+            newline="",
+            encoding="utf-8"
+        ) as outfile:
+            writer = csv.writer(outfile)
+
+            writer.writerow([
+                "User Name",
+                "Competency Name",
+                "Assessment Name",
+                "Score",
+                "Date Taken"
+            ])
+
+            # Write every database row as a separate CSV row
+            writer.writerows(rows)
+            return True
+
 
 
 

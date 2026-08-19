@@ -127,6 +127,15 @@ def print_report_screen():
 3. Print Reports
 ''')
 
+def display_print_selection_screen():
+    s = '''
+1. Print User Competency Summary
+2. Print Competency Result Summary
+
+Press Enter to go back
+'''
+    return s
+
 
 
         
