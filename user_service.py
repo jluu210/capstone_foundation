@@ -12,16 +12,16 @@ def user_id_wf_manager(logged_in_user:User,db:Database):
     u_id = input('\nEnter a User ID to work on: ')
     work_on_user_obj(logged_in_user,db.load_user_by_id(u_id),db)
 def edit_user(user:User, db:Database):
-    f_name = input(f'Current Name {user.f_name} or ENTER to continue: ')
+    f_name = input(f'Change current Name {user.f_name} or ENTER to skip: ')
     if f_name == '':
        f_name = user.f_name
-    l_name = input(f'Current Last Name {user.l_name} or ENTER to continue: ')
+    l_name = input(f'Change current Last Name {user.l_name} or ENTER to skip: ')
     if l_name == '':
         l_name = user.l_name
-    phone = input(f'Current Phone {user.phone} or ENTER to continue: ')
+    phone = input(f'Change current Phone {user.phone} or ENTER to skip: ')
     if phone == '':
         phone = user.phone
-    email = input(f'Current Email {user.email} or ENTER to continue: ')
+    email = input(f'Change current Email {user.email} or ENTER to skip: ')
     if email == '':
         email = user.email
     db.update_user_data(user.user_id, f_name, l_name, phone, email)
@@ -99,9 +99,11 @@ def create_new_user(db:Database):
     for k in fields:
         val = input(f'Enter {k}: ').strip()
         if val == '':
-            break
+            print('\nUser Creation Cancelled!')
+            return
         results.append(val)
-    db.create_user(results)
+        if len(results) == 7:
+            db.create_user(results)
 def manager_flow(user:Manager, db:Database):
     while True:
         print_selection_screen_manager()

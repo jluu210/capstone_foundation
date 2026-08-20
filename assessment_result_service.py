@@ -5,6 +5,7 @@ import random
 def review_assessment_results_for_id(rs:list,db:Database):
     results = db.get_all_assessment_results_for_an_id(rs[0])
     print_table(results,['Assessment Result ID','User ID','Assigned To','Score','Date Taken'])
+    print("")
 def load_results_into_objects(rows:list): 
     results = [AssessmentResult.from_row(row) for row in rows]
     return results

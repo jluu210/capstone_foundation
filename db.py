@@ -103,24 +103,24 @@ class Database:
             return None
         else:
             return row
-    def get_all_assessment_results_for_an_id(self,ar_id):
+    def get_all_assessment_results_for_an_id(self, assessment_id):
         cur = self.conn.cursor()
-        cur.execute('''SELECT
-        ar.result_id,
-        ar.user_id,
-        GROUP_CONCAT(u.f_name || ' ' || u.l_name, ', ') AS assigned_to,
-        ar.score,
-        ar.date_taken
-        FROM Assessment_Results ar
-        JOIN Users u
-        ON u.user_id = ar.user_id
-        WHERE ar.assessment_id = ?
-        ORDER BY ar.date_taken DESC, ar.result_id;''',(ar_id,))
-        rows = cur.fetchall()
-        if rows is None:
-            return None
-        else:
-            return rows
+
+        cur.execute('''
+            SELECT
+                ar.result_id,
+                ar.user_id,
+                u.f_name || ' ' || u.l_name AS user_name,
+                ar.score,
+                ar.date_taken
+            FROM Assessment_Results AS ar
+            JOIN Users AS u
+                ON u.user_id = ar.user_id
+            WHERE ar.assessment_id = ?
+            ORDER BY ar.date_taken DESC, ar.result_id;
+        ''', (assessment_id,))
+
+        return cur.fetchall()
     def get_assement_result_details(self,ar_id):
         cur = self.conn.cursor()
         cur.execute('''
